@@ -68,4 +68,20 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.conta
 document.querySelectorAll('[data-service]').forEach(a=>a.addEventListener('click',()=>{document.querySelector('#service').value=a.dataset.service;}));
 document.querySelector('#year').textContent=new Date().getFullYear();
 document.querySelector('#inquiry').addEventListener('submit',e=>{e.preventDefault();const name=document.querySelector('#name').value.trim(),email=document.querySelector('#email').value.trim(),service=document.querySelector('#service').value,message=document.querySelector('#message').value.trim();if(!name||!message){document.querySelector('#form-status').textContent=localeCopy.validation;return;}const serviceLabel=document.querySelector('#service').selectedOptions[0].textContent;const body=`${localeCopy.hello}\n\n${localeCopy.help} ${serviceLabel}\n\n${message}\n\n${localeCopy.name} ${name}\n${localeCopy.email} ${email}`;window.location.href='mailto:contact@ezvisa.business?subject='+encodeURIComponent(localeCopy.subject+' — '+service)+'&body='+encodeURIComponent(body);document.querySelector('#form-status').textContent=localeCopy.status;});
-</script></body></html>
+</script>
+<script>
+  (function(d,t) {
+    var BASE_URL="https://chatwoot-production-22d6.up.railway.app";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'DuGRRegLoDnk8aEctrC38vTH',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");
+</script>
+</body></html>
